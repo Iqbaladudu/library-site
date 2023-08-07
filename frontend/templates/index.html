@@ -1,5 +1,26 @@
 {% extends 'base_generic.html' %}
 {% load static %}
+{% load get_count %}
 {% block content %}
-<h1>Hai</h1>
+<div class="w-full min-h-screen bg-white flex flex-col justify-center items-center">
+    <div class="w-1/5 flex flex-col justify-center items-center">
+        <h1 class="text-5xl font-bold">Hadara Library</h1>
+        <p class="py-6 text-xl">Take the book, read!</p>
+        <a href="{% url 'catalog' %}" class="btn btn-primary">Browse Catalog</a>
+    </div>
+    <div class="mt-10 flex gap-10">
+        <div class="flex flex-col justify-center">
+            <h1 class="text-4xl font-bold">{% get_count "book" %}</h1>
+            <p>Books</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+            <h1 class="text-4xl font-bold text-center">{% get_count "author" %}</h1>
+            <p>Authors</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+            <h1 class="text-4xl font-bold text-center">{% get_count "genre" %}</h1>
+            <p>Genres</p>
+        </div>
+    </div>
+</div>
 {% endblock content %}
