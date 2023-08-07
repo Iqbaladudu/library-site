@@ -1,3 +1,5 @@
+{% load static tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,7 @@
     {% block title %}
     <title>Local Library</title>
     {% endblock %}
+    {% tailwind_css %}
 </head>
 <body>
     <div class="container-fluid">
@@ -17,7 +20,7 @@
             <div class="col-sm-2">
             {% block sidebar %}
             <ul class="sidebar-nav">
-                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'catalog' %}">Home</a></li>
                 <li><a href="{% url 'books' %}">All books</a></li>
                 <li><a href="{% url 'authors' %}">All authors</a></li>
               </ul>

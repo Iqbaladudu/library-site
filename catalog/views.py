@@ -29,7 +29,7 @@ class LoanedBooksByStaffListView(PermissionRequiredMixin, generic.ListView):
     def get_queryset(self):
         return (BookInstance.objects.filter(status__exact='o').order_by('due_back'))
 
-def index(request):
+def catalog(request):
     """View function for home page of site."""
     
     # # Generate counts of some of the main objects
@@ -60,7 +60,7 @@ def index(request):
     
     # Render the HTML template index.html with the data in the context variable
     
-    return render(request, 'index.html', context=context)
+    return render(request, 'catalog/index.html', context=context)
 
 class BookListView(generic.ListView):
     # this class will get db from models 'Book'
