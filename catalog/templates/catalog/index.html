@@ -19,10 +19,32 @@
     <p>
         Kunjungan ke {{ num_visits }}
     </p> {% endcomment %}
-<div class="container min-h-screen mx-auto flex justify-center items-center">
-    <div class="indicator">
-        <span class="indicator-item badge badge-secondary">99+</span> 
-        <button class="btn">inbox</button>
+<div class="w-full h-screen p-10">
+    <div class="flex flex-col items-center">
+        <div class="card w-[92%] bg-gradient-to-bl from-pink-500 via-red-500 to-yellow-500 border-none">
+            <div class="card-body">
+                <h2 class="text-3xl font-bold card-title text-base-100">Books</h2>
+                <div class="flex gap-5 flex-wrap">
+                {% for book in books %}
+                    <div x-data={} @click="window.open('{% url 'catalog' %}book/{{ book.id }}', target='_self')" class="card w-60 backdrop-blur-xl bg-base-100/50 shadow-md hover:bg-base-100/70 hover:cursor-pointer transition ease-in-out delay-150 duration-300">
+                        <figure class="px-2 pt-2"><img src="https://dummyimage.com/600x400/000/fff" alt="book" class="rounded-xl" /></figure>
+                        <div class="card-body">
+                          <h2 class="card-title text-xl">
+                            {{ book.title }}
+                          </h2>
+                          <p>{{ book.summary|truncatewords:5 }}</p>
+                          <div class="card-actions justify-start">
+                              <div class="badge badge-neutral w-auto">{{ book.author }}</div>
+                          </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="card-actions justify-end mt-2">
+                    <button class="btn btn-neutral btn-sm">More</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

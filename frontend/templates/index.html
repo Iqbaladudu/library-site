@@ -2,13 +2,19 @@
 {% load static %}
 {% load get_count %}
 {% block content %}
-<div class="w-full min-h-screen bg-white flex flex-col justify-center items-center">
-    <div class="w-1/5 flex flex-col justify-center items-center">
-        <h1 class="text-5xl font-bold">Hadara Library</h1>
-        <p class="py-6 text-xl">Take the book, read!</p>
+<div class="w-full min-h-screen bg-gradient-to-r from-teal-200 to-lime-200 flex flex-col justify-center items-center">
+    <svg id="sw-js-blob-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="h-52 blur-xl absolute top-3 left-3">
+        <defs>                 
+        <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">                            <stop id="stop1" stop-color="rgba(248, 117, 55, 1)" offset="0%"></stop>                            <stop id="stop2" stop-color="rgba(251, 168, 31, 1)" offset="100%"></stop>                        </linearGradient>                    </defs>                <path fill="url(#sw-gradient)" d="M26.6,-22.1C33,-13.2,35.6,-2.2,31.3,3.3C27,8.9,15.7,9,7.6,11.1C-0.5,13.1,-5.3,17.1,-13.4,17.3C-21.6,17.5,-32.9,13.8,-35.7,6.7C-38.5,-0.4,-32.7,-10.9,-25.3,-20.1C-17.9,-29.2,-9,-36.9,0.6,-37.4C10.1,-37.9,20.2,-31,26.6,-22.1Z" transform="translate(50 50)" stroke-width="0" style="transition: all 0.3s ease 0s;">
+        </path>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 600 600" class="absolute w-96 blur-sm right-0 bottom-0 z-0"><path d="M198.92773784124188 448.9564528424469C134.00627228541504 459.6894342063792 129.55600322210125 485.34387349674375 100.7601887079411 435.6056532819C71.96437419378094 385.86743306705625 64.89631490829916 341.88838847070207 112.54029429876141 299.74179219791563C160.18427368922366 257.5951959251292 182.69736318710775 274.61089213281144 243.69212687932782 309.16586446354063C304.68689057154785 343.7208367942698 310.4460483881169 356.8098463971344 295.52458537542157 403.40670919010313C280.60312236272625 450.0035719830719 263.8492033970687 438.22347147851457 198.92773784124188 448.9564528424469C134.00627228541504 459.6894342063792 129.55600322210125 485.34387349674375 100.7601887079411 435.6056532819 " fill="none" stroke-width="7" stroke="hsl(340, 45%, 30%)" transform="matrix(1.1025,0,0.19440049623108263,1.1025,-3.6500968682523194,-157.31350421905523)"></path></svg>
+    <div class="w-1/5 flex flex-col justify-center items-center z-50">
+        <h1 class="text-5xl font-bold">Iqbal Library</h1>
+        <p class="py-6 w-52 text-xl">Take the book, read!</p>
         <a href="{% url 'catalog' %}" class="btn btn-primary">Browse Catalog</a>
     </div>
-    <div class="mt-10 flex gap-10">
+    <div class="mt-10 flex gap-10 z-50 bg-white/30 backdrop-blur-sm p-4 rounded-xl">
         <div class="flex flex-col justify-center">
             <h1 class="text-4xl font-bold">{% get_count "book" %}</h1>
             <p>Books</p>

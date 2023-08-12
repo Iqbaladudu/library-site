@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Book, Author, BookInstance, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
@@ -32,33 +32,45 @@ class LoanedBooksByStaffListView(PermissionRequiredMixin, generic.ListView):
 def catalog(request):
     """View function for home page of site."""
     
-    # # Generate counts of some of the main objects
-    num_books = Book.objects.all().count()
-    num_instances = BookInstance.objects.all().count()
+    # # # Generate counts of some of the main objects
+    # num_books = Book.objects.all().count()
+    # num_instances = BookInstance.objects.all().count()
     
-    # Available books (status = 'a')
-    num_instances_available = BookInstance.objects.filter(status__exact='a').count()
+    # # Available books (status = 'a')
+    # num_instances_available = BookInstance.objects.filter(status__exact='a').count()
     
-    # the all() is implied by default, jadi tidak perlu ditulis
-    num_authors = Author.objects.count()
-    genres_name = Genre.objects.all()
-    num_genres = Genre.objects.count()
+    # # the all() is implied by default, jadi tidak perlu ditulis
+    # num_authors = Author.objects.count()
+    # genres_name = Genre.objects.all()
+    # num_genres = Genre.objects.count()
 
-    # Session
-    num_visits = request.session.get('num_visit', 0)
-    request.session['num_visit'] = num_visits + 1
+    # # Session
+    # num_visits = request.session.get('num_visit', 0)
+    # request.session['num_visit'] = num_visits + 1
     
-    context = {
-        'num_books': num_books,
-        'num_instances': num_instances,
-        'num_instances_available': num_instances_available,
-        'num_authors': num_authors,
-        'genres_name': genres_name,
-        'num_genres': num_genres,
-        'num_visits': num_visits,
-    }
+    # context = {
+    #     'num_books': num_books,
+    #     'num_instances': num_instances,
+    #     'num_instances_available': num_instances_available,
+    #     'num_authors': num_authors,
+    #     'genres_name': genres_name,
+    #     'num_genres': num_genres,
+    #     'num_visits': num_visits,
+    # }
     
     # Render the HTML template index.html with the data in the context variable
+
+    list_books = get_list_or_404(Book)[-6:]
+    list_available_books = get_list_or_404(BookInstance)
+    list_authors = get_list_or_404(Author)
+    list_genres = get_list_or_404(Genre)
+
+    context = {
+        'books': list_books,
+        'avail_books': list_available_books,
+        'authors': list_authors,
+        'genres': list_genres
+    }
     
     return render(request, 'catalog/index.html', context=context)
 
@@ -77,7 +89,7 @@ class BookListView(generic.ListView):
         return Book.objects.all()
     # Specify your own template name/location
     template_name = 'books/book_list.html'
-    paginate_by = 2
+    paginate_by = 10
 
 class BookDetailView(generic.DetailView):
     model = Book
