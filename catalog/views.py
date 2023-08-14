@@ -60,10 +60,10 @@ def catalog(request):
     
     # Render the HTML template index.html with the data in the context variable
 
-    list_books = get_list_or_404(Book)[-6:]
-    list_available_books = get_list_or_404(BookInstance)
-    list_authors = get_list_or_404(Author)
-    list_genres = get_list_or_404(Genre)
+    list_books = get_list_or_404(Book)[-4:]
+    list_available_books = get_list_or_404(BookInstance)[-4:]
+    list_authors = get_list_or_404(Author)[-4:]
+    list_genres = get_list_or_404(Genre)[-4:]
 
     context = {
         'books': list_books,

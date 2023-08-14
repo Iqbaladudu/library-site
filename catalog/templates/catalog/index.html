@@ -21,27 +21,76 @@
     </p> {% endcomment %}
 <div class="w-full h-screen p-10">
     <div class="flex flex-col items-center">
-        <div class="card w-[92%] bg-gradient-to-bl from-pink-500 via-red-500 to-yellow-500 border-none">
+        <div class="card border-none">
             <div class="card-body">
-                <h2 class="text-3xl font-bold card-title text-base-100">Books</h2>
+                <div class="flex gap-3 justify-between items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold card-title text-primary">Books</h2>
+                    </div>
+                    <div>
+                        <a href="{% url 'books' %}" class="text-secondary">Selengkapnya</a>
+                    </div>
+                </div>
                 <div class="flex gap-5 flex-wrap">
                 {% for book in books %}
-                    <div x-data={} @click="window.open('{% url 'catalog' %}book/{{ book.id }}', target='_self')" class="card w-60 backdrop-blur-xl bg-base-100/50 shadow-md hover:bg-base-100/70 hover:cursor-pointer transition ease-in-out delay-150 duration-300">
-                        <figure class="px-2 pt-2"><img src="https://dummyimage.com/600x400/000/fff" alt="book" class="rounded-xl" /></figure>
-                        <div class="card-body">
+                    <div x-data={} @click="window.open('{% url 'catalog' %}book/{{ book.id }}', target='_self')" class="card w-52 backdrop-blur-xl bg-base-100/50 shadow-none hover:bg-base-100/70 hover:cursor-pointer transition ease-in-out delay-150 duration-300 card-bordered card-compact">
+                        <figure class="p-2"><img src="https://dummyimage.com/600x600/000/fff" alt="book" class="rounded-xl" /></figure>
+                        <div class="flex mx-3 flex-col items-start gap-3">
                           <h2 class="card-title text-xl">
                             {{ book.title }}
                           </h2>
-                          <p>{{ book.summary|truncatewords:5 }}</p>
-                          <div class="card-actions justify-start">
-                              <div class="badge badge-neutral w-auto">{{ book.author }}</div>
-                          </div>
+                          <p>Penulis: <span>{{ book.author.first_name }} {{ book.author.last_name }}</span></p>
                         </div>
                     </div>
                 {% endfor %}
                 </div>
-                <div class="card-actions justify-end mt-2">
-                    <button class="btn btn-neutral btn-sm">More</button>
+            </div>
+        </div>
+        <div class="card border-none">
+            <div class="card-body">
+                <div class="flex gap-3 justify-between items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold card-title text-primary">Genres</h2>
+                    </div>
+                    <div>
+                        <a href="{% url 'books' %}" class="text-secondary">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="flex gap-5 flex-wrap">
+                {% for genre in genres %}
+                    <div x-data={} @click="" class="card w-52 backdrop-blur-xl bg-base-100/50 shadow-none hover:bg-base-100/70 hover:cursor-pointer transition ease-in-out delay-150 duration-300 card-bordered card-compact">
+                        <figure class="p-2"><img src="https://dummyimage.com/600x600/000/fff" alt="genre" class="rounded-xl" /></figure>
+                        <div class="flex mx-3 flex-col items-start gap-3">
+                          <h2 class="card-title text-xl">
+                            {{ genre.name }}
+                          </h2>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="card border-none">
+            <div class="card-body">
+                <div class="flex gap-3 justify-between items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold card-title text-primary">Authors</h2>
+                    </div>
+                    <div>
+                        <a href="{% url 'books' %}" class="text-secondary">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="flex gap-5 flex-wrap">
+                {% for author in authors %}
+                    <div x-data={} @click="" class="card w-52 backdrop-blur-xl bg-base-100/50 shadow-none hover:bg-base-100/70 hover:cursor-pointer transition ease-in-out delay-150 duration-300 card-bordered card-compact">
+                        <figure class="p-2"><img src="https://dummyimage.com/600x600/000/fff" alt="genre" class="rounded-xl" /></figure>
+                        <div class="flex mx-3 flex-col items-start gap-3">
+                          <h2 class="card-title text-xl">
+                            {{ author.first_name }} {{ author.last_name }}
+                          </h2>
+                        </div>
+                    </div>
+                {% endfor %}
                 </div>
             </div>
         </div>
